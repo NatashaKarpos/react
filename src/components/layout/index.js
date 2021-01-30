@@ -1,21 +1,21 @@
 import s from './style.module.css';
 
-const Layout = (props) => {
-    const bg = props.urlBg ? `url(${props.urlBg})` : props.colorBg; 
-    const styleBg = {
-        background: bg,
+const Layout = ({id, title, urlBg, colorBg, children}) => {
+    const styleBg = {};
 
-    };
+    styleBg.backgroundImage = urlBg ? `url(${urlBg})` : null;
+    styleBg.backgroundColor = colorBg ? colorBg : null;
+    
     return (
-        <section className={s.root} id={props.id} style={styleBg}>
+        <section className={s.root} id={id} style={styleBg}>
             <div className={s.wrapper}>
                 <article>
                     <div className={s.title}>
-                        <h3>{props.title}</h3>
+                        <h3>{title}</h3>
                         <span className={s.separator}></span>
                     </div>
                     <div className={(s.desc + ' ' + s.full)}>
-                        <p>{props.descr}</p>
+                        {children}
                     </div>
                 </article>
             </div>
